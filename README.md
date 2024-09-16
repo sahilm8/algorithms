@@ -1,4 +1,4 @@
-# Data Structures
+# Algorithms
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![LeetCode](https://img.shields.io/badge/LeetCode-000000?style=for-the-badge&logo=LeetCode&logoColor=#d16c06)
 
@@ -6,7 +6,7 @@
 
 Main algorithms and some LeetCode examples.
 
-## Algorithms
+## Main Algorithms
 
 - Sorting algorithms
 - Searching algorithms
