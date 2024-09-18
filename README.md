@@ -9,7 +9,8 @@ Main algorithms and some LeetCode examples.
 ## Main Algorithms
 
 - Sorting algorithms
-- Searching algorithms
-- Graph algorithms
-- Dynamic programming
-- Recursion
+  - Bubble sort
+  - Selection sort
+  - Insertion sort
+  - Merge sort
+  - Quick sort
