@@ -22,10 +22,8 @@ public class MergeSort {
         int n2 = r - m;
         int[] L = new int[n1];
         int[] R = new int[n2];
-
         System.arraycopy(arr, l, L, 0, n1);
         System.arraycopy(arr, m + 1, R, 0, n2);
-
         int i = 0, j = 0, k = l;
         while (i < n1 && j < n2) {
             if (L[i] <= R[j]) {
@@ -37,13 +35,11 @@ public class MergeSort {
             }
             k++;
         }
-
         while (i < n1) {
             arr[k] = L[i];
             i++;
             k++;
         }
-
         while (j < n2) {
             arr[k] = R[j];
             j++;
