@@ -7,7 +7,7 @@ import java.util.Arrays;
  * and swaps them if they're in the wrong order.
  */
 public class BubbleSort {
-    public static void _bubbleSort(int[] arr) {
+    public static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -21,7 +21,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] arr = { 4, 1, 2, 3, -1 };
-        _bubbleSort(arr);
+        bubbleSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
