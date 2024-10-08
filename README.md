@@ -14,7 +14,7 @@ Main algorithms in Java.
 - Search
   - BinarySearch
 - Dynamic
-  -DynamicProgramming
+  - DynamicProgramming
 - Sorting
   - BubbleSort
   - SelectionSort
