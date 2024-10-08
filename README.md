@@ -8,9 +8,13 @@ Main algorithms in Java.
 
 ## Main Algorithms
 
-- Sorting algorithms
-  - Bubble sort
-  - Selection sort
-  - Insertion sort
-  - Merge sort
-  - Quick sort
+- Design
+  - TwoPointer
+- Search
+  - BinarySearch
+- Sorting
+  - BubbleSort
+  - SelectionSort
+  - InsertionSort
+  - MergeSort
+  - QuickSort
