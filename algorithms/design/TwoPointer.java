@@ -34,6 +34,6 @@ public class TwoPointer {
 
     public static void main(String[] args) {
         System.out.println(
-                "Looking for two values whose sum is 2: " + Arrays.toString(twoPointer(new int[] { 2, 4, 1, 3 }, 3)));
+                "Looking for two values whose sum is 3: " + Arrays.toString(twoPointer(new int[] { 2, 4, 1, 3 }, 3)));
     }
 }
