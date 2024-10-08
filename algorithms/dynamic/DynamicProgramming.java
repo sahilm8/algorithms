@@ -10,7 +10,7 @@ public class DynamicProgramming {
         int[] fib = new int[n + 1]; // Calculating Fibonacci from 0 to n inclusive, hence size is n + 1
         fib[0] = 0;
         fib[1] = 1;
-        for (int i = 2; i <=n; i++) {
+        for (int i = 2; i <= n; i++) {
             fib[i] = fib[i - 1] + fib[i - 2]; // Tabulation i.e. storing and building up results in an array
         }
         return fib[n];
