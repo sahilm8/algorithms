@@ -10,6 +10,7 @@ Main algorithms in Java.
 
 - Design
   - TwoPointer
+  - SlidingWindow
 - Search
   - BinarySearch
 - Dynamic

@@ -11,11 +11,13 @@ import java.util.Arrays;
  * for pairs with certain properties.
  * 
  * This two-pointer implementation demonstrates its use to find a pair
- * of numbers in a sorted array that sum up to a target value:
+ * of numbers in an unsorted array that sum up to a target value:
  */
 public class TwoPointer {
     public static int[] twoPointer(int[] arr, int target) {
-        int left = 0, right = arr.length - 1; // two pointers
+        Arrays.sort(arr);
+        int left = 0;
+        int right = arr.length - 1;
         while (left < right) {
             int sum = arr[left] + arr[right];
             if (sum == target) {
@@ -32,6 +34,6 @@ public class TwoPointer {
 
     public static void main(String[] args) {
         System.out.println(
-                "Looking for two values whose sum is 4: " + Arrays.toString(twoPointer(new int[] { 1, 2, 3, 4 }, 4)));
+                "Looking for two values whose sum is 2: " + Arrays.toString(twoPointer(new int[] { 2, 4, 1, 3 }, 3)));
     }
 }

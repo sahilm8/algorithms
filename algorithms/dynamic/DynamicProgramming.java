@@ -6,16 +6,18 @@ package algorithms.dynamic;
  * subproblems to avoid redundant computations, thus optimizing the overall solution.
  */
 public class DynamicProgramming {
+    // Fibonacci example: calculating the fibonacci value
     public static int fibonacci(int n) {
-        int[] fib = new int[n + 1]; // Calculating Fibonacci from 0 to n inclusive, hence size is n + 1
-        fib[0] = 0;
-        fib[1] = 1;
+        int[] array = new int[n + 1]; // Claculating from 0 to n, inclusive
+        array[0] = 0;
+        array[1] = 1;
         for (int i = 2; i <= n; i++) {
-            fib[i] = fib[i - 1] + fib[i - 2]; // Tabulation i.e. storing and building up results in an array
+            array[i] = array[i - 1] + array[i - 2];
         }
-        return fib[n];
+        return array[n];
     }
+
     public static void main(String[] args) {
-        System.out.println(fibonacci(10)); // Output: 55
+        System.out.println(fibonacci(12)); // Output: 144
     }
 }
