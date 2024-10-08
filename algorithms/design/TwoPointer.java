@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class TwoPointer {
     public static int[] twoPointer(int[] arr, int target) {
-        int left = 0, right = arr.length - 1;
+        int left = 0, right = arr.length - 1; // two pointers
         while (left < right) {
             int sum = arr[left] + arr[right];
             if (sum == target) {
