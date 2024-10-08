@@ -14,26 +14,24 @@ import java.util.Arrays;
  * of numbers in a sorted array that sum up to a target value:
  */
 public class TwoPointer {
-    public int[] twoPointer(int[] arr, int target) {
-        int l = 0;
-        int r = arr.length - 1;
-        while (l < r) {
-            int sum = arr[l] + arr[r];
+    public static int[] twoPointer(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int sum = arr[left] + arr[right];
             if (sum == target) {
-                return new int[] { arr[l], arr[r] };
+                return new int[] {arr[left], arr[right]};
             }
             if (sum < target) {
-                l++;
+                left++;
             } else {
-                r--;
+                right--;
             }
         }
         return new int[] {};
     }
 
     public static void main(String[] args) {
-        TwoPointer tp = new TwoPointer();
         System.out.println(
-                "Looking two values whose sum is 4: " + Arrays.toString(tp.twoPointer(new int[] { 1, 2, 3, 4 }, 4)));
+                "Looking for two values whose sum is 4: " + Arrays.toString(twoPointer(new int[] { 1, 2, 3, 4 }, 4)));
     }
 }
