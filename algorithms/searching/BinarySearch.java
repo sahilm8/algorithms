@@ -10,7 +10,7 @@ package algorithms.searching;
  * target is found or it's clear the target is not in the array.
  */
 public class BinarySearch {
-    public int binarySearch(int[] arr, int target) {
+    public static int binarySearch(int[] arr, int target) {
         int l = 0;
         int r = arr.length - 1;
         while (l <= r) {
@@ -28,8 +28,7 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        BinarySearch bs = new BinarySearch();
         System.out.println("Looking for 3: "
-                + bs.binarySearch(new int[] { 1, 2, 3, 4, 5, 6 }, 3));
+                + binarySearch(new int[] { 1, 2, 3, 4, 5, 6 }, 3));
     }
 }
