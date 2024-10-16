@@ -39,7 +39,8 @@ public class Misc {
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode current = new ListNode();
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
         while (list1 != null && list2 != null) {
             if (list1.val <= list2.val) {
                 current.next = list1;
@@ -48,6 +49,7 @@ public class Misc {
                 current.next = list2;
                 list2 = list2.next;
             }
+            current = current.next;
         }
         if (list1 != null) {
             current.next = list1;
@@ -55,10 +57,27 @@ public class Misc {
         if (list2 != null) {
             current.next = list2;
         }
-        return current.next;
-    } 
+        return dummyHead.next; // returning the linked list after the dummyHead
+    }
+
+    public static String listNodeToString(ListNode head) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        while (head != null) {
+            sb.append(head.val);
+            if (head.next != null) {
+                sb.append(", ");
+            }
+            head = head.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
+        ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+        ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
     }
 }
