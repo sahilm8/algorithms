@@ -88,6 +88,7 @@ public class Misc {
         }
     }
 
+    // Calculated using resursive DFS (Depth First Search)
     public static int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
