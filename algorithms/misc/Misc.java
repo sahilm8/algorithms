@@ -144,7 +144,5 @@ public class Misc {
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
-        int[] nums = new int[]{1,2,3};
-
     }
 }
