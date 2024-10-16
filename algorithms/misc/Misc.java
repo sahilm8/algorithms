@@ -98,11 +98,37 @@ public class Misc {
         return 1 + Math.max(leftDepth, rightDepth);
     }
 
+    // 206. Reverse Linked List
+    // iterative
+    public static ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
+        }
+        return prev;
+    }
+
+    // recursive
+    public static ListNode _reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode reversedRest = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return reversedRest;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
+        System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
     }
 }
