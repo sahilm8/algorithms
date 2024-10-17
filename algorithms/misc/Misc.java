@@ -159,6 +159,27 @@ public class Misc {
         return false;
     }
 
+    // 91. Decode Ways
+    public static int numDecodings(String s) {
+        int ways = 1;
+        if (s.toCharArray().length == 1) {
+            if (s.charAt(0) == 0) {
+                return 0;
+            } else {
+                return ways;
+            }
+        }
+        int current = 0;
+        while (current < s.toCharArray().length - 1) {
+            int next = current + 1;
+            if (Integer.parseInt(new String(new char[] {s.charAt(current), s.charAt(next)})) <= 26) {
+                ways++;
+            }
+            current++;
+        }
+        return ways;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
