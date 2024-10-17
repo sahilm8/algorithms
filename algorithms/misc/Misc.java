@@ -137,6 +137,28 @@ public class Misc {
         return reversedRest;
     }
 
+    // 1041. Robot Bounded in Circle
+    public static boolean isRobotBounded(String instructions) {
+        int x = 0, y = 0;
+        int facing = 0; // N E S W
+        int[][] directions = new int[][] {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // N E S W
+        for (int i = 0; i < instructions.length(); i++) {
+            if (instructions.charAt(i) == 'L') {
+                // Modular arithmetic:
+                // any number % n to will be in the range 0 to n-1 inclusive
+                // Hence, 0 to 3, i.e. 0 = N, 1 = E, 2 = S, 3 = W
+                facing = (facing + 3) % 4; // +3 to turn left
+            } else if (instructions.charAt(i) == 'R') {
+                facing = (facing + 1) % 4; // +1 to turn right
+            } else {
+                x += directions[facing][0];
+                y += directions[facing][1];
+            }
+        }
+        if ((x == 0 && y == 0) || facing != 0) return true;
+        return false;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -144,5 +166,6 @@ public class Misc {
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
+        System.out.println(isRobotBounded("GLRLLGLL"));
     }
 }
