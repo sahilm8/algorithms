@@ -1,5 +1,6 @@
 package algorithms.misc;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -166,8 +167,8 @@ public class Misc {
         }
         // dynamic programming to count ways to decode
         int[] ways = new int[s.length() + 1]; // 0 to s.length() inclusive
-        ways[0] = 1; // 1 way to decode for a single number
-        ways[1] = 1;
+        ways[0] = 1; // 1 set for DP convention
+        ways[1] = 1; // 1 way to decode a single digit
         for (int i = 2; i <= s.length(); i++) {
             int singleDigit = Integer.parseInt(s.substring(i - 1, i));
             int doubleDigit = Integer.parseInt(s.substring(i - 2, i));
@@ -177,9 +178,10 @@ public class Misc {
             }
             // double digit decoding
             if (doubleDigit >= 10 && doubleDigit <= 26) {
-                ways[i] += ways[i - 2];
+                ways[i] += ways[i - 2]; 
             }
         }
+        System.out.println(Arrays.toString(ways));
         return ways[s.length()];
     }
 
