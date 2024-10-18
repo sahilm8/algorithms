@@ -183,6 +183,20 @@ public class Misc {
         return ways[s.length()];
     }
 
+    // 387. First Unique Character in a String
+    public static int firstUniqChar(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -192,5 +206,6 @@ public class Misc {
         System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
         System.out.println(isRobotBounded("GLRLLGLL"));
         System.out.println(numDecodings("226"));
+        System.out.println(firstUniqChar("loveleetcode"));
     }
 }
