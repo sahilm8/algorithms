@@ -161,23 +161,25 @@ public class Misc {
 
     // 91. Decode Ways
     public static int numDecodings(String s) {
-        int ways = 1;
-        if (s.toCharArray().length == 1) {
-            if (s.charAt(0) == 0) {
-                return 0;
-            } else {
-                return ways;
-            }
+        if (s == null || s.length() == 0 || s.charAt(0) == '0') {
+            return 0;
         }
-        int current = 0;
-        while (current < s.toCharArray().length - 1) {
-            int next = current + 1;
-            if (Integer.parseInt(new String(new char[] {s.charAt(current), s.charAt(next)})) <= 26) {
-                ways++;
+        int n = s.length();
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            int oneDigit = Integer.parseInt(s.substring(i - 1, i));
+            int twoDigits = Integer.parseInt(s.substring(i - 2, i));
+            
+            if (oneDigit >= 1 && oneDigit <= 9) {
+                dp[i] += dp[i - 1];
             }
-            current++;
-        }
-        return ways;
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                dp[i] += dp[i - 2];
+            }
+        }   
+        return dp[n];
     }
 
     public static void main(String[] args) {
@@ -188,5 +190,6 @@ public class Misc {
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
         System.out.println(isRobotBounded("GLRLLGLL"));
+        System.out.println(numDecodings("226"));
     }
 }
