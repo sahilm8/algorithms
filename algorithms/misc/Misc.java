@@ -164,22 +164,23 @@ public class Misc {
         if (s == null || s.length() == 0 || s.charAt(0) == '0') {
             return 0;
         }
-        int n = s.length();
-        int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            int oneDigit = Integer.parseInt(s.substring(i - 1, i));
-            int twoDigits = Integer.parseInt(s.substring(i - 2, i));
-            
-            if (oneDigit >= 1 && oneDigit <= 9) {
-                dp[i] += dp[i - 1];
+        // dynamic programming to count ways to decode
+        int[] ways = new int[s.length() + 1]; // 0 to s.length() inclusive
+        ways[0] = 1; // 1 way to decode for a single number
+        ways[1] = 1;
+        for (int i = 2; i <= s.length(); i++) {
+            int singleDigit = Integer.parseInt(s.substring(i - 1, i));
+            int doubleDigit = Integer.parseInt(s.substring(i - 2, i));
+            // single digit decoding
+            if (singleDigit >= 1 && singleDigit <= 9) {
+                ways[i] += ways[i - 1];
             }
-            if (twoDigits >= 10 && twoDigits <= 26) {
-                dp[i] += dp[i - 2];
+            // double digit decoding
+            if (doubleDigit >= 10 && doubleDigit <= 26) {
+                ways[i] += ways[i - 2];
             }
-        }   
-        return dp[n];
+        }
+        return ways[s.length()];
     }
 
     public static void main(String[] args) {
