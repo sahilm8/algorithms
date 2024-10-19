@@ -2,6 +2,7 @@ package algorithms.misc;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 // LeetCode Answers
@@ -199,6 +200,36 @@ public class Misc {
         return -1;
     }
 
+    // 166. Fraction to Recurring Decimal
+    public static String fractionToDecimal(int numerator, int denominator) {
+        if (numerator == 0) return "0";
+        StringBuilder result = new StringBuilder();
+        // Handle sign
+        if ((numerator < 0) ^ (denominator < 0)) result.append("-"); // XOR true when both have diff signs
+        long num = Math.abs((long) numerator);
+        long den = Math.abs((long) denominator);
+        // Integer part
+        result.append(num / den);
+        long remainder = num % den;
+        if (remainder == 0) return result.toString();
+        result.append(".");
+        Map<Long, Integer> seenRemainders = new HashMap<>();
+        // Fractional part
+        while (remainder != 0) {
+            if (seenRemainders.containsKey(remainder)) {
+                int index = seenRemainders.get(remainder);
+                result.insert(index, "(");
+                result.append(")");
+                break;
+            }
+            seenRemainders.put(remainder, result.length());
+            remainder *= 10;
+            result.append(remainder / den);
+            remainder %= den;
+        }
+        return result.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -209,5 +240,6 @@ public class Misc {
         System.out.println(isRobotBounded("GLRLLGLL"));
         System.out.println(numDecodings("226"));
         System.out.println(firstUniqChar("loveleetcode"));
+        System.out.println(fractionToDecimal(1, 2));
     }
 }
