@@ -1,7 +1,9 @@
 package algorithms.misc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -230,6 +232,39 @@ public class Misc {
         return result.toString();
     }
 
+    // 15. 3Sum
+    public static List<List<Integer>> threeSum(int nums[]) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            // Skip duplicate element
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            // Two pointers iterated in the order: i -> left -> right
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                if (sum == 0) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[left]);
+                    list.add(nums[right]);
+                    result.add(list);
+                    // Skip duplicate elements
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return result;
+    }    
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -241,5 +276,6 @@ public class Misc {
         System.out.println(numDecodings("226"));
         System.out.println(firstUniqChar("loveleetcode"));
         System.out.println(fractionToDecimal(1, 2));
+        System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
     }
 }
