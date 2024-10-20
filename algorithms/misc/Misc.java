@@ -265,6 +265,23 @@ public class Misc {
         return result;
     }    
 
+    // 121. Best Time to Buy and Sell Stock
+    public static int maxProfit(int[] prices) {
+        int lowest = prices[0];
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < lowest) {
+                lowest = prices[i];
+            } else {
+                int currentProfit = prices[i] - lowest;
+                if (currentProfit > profit) {
+                    profit = currentProfit;
+                }
+            }
+        }
+        return profit;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -277,5 +294,6 @@ public class Misc {
         System.out.println(firstUniqChar("loveleetcode"));
         System.out.println(fractionToDecimal(1, 2));
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
+        System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
     }
 }
