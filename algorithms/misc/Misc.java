@@ -10,7 +10,7 @@ import java.util.Stack;
 
 // LeetCode Answers
 public class Misc {
-    // 6. Two Sum [T = O(n), S = O(n)]
+    // 6. Two Sum (Easy) [T = O(n), S = O(n)]
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -22,7 +22,7 @@ public class Misc {
         return new int[] {};
     }
 
-    // 20. Valid Parenthesis [T = O(n), S = O(n/2) = O(n)]
+    // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n/2) = O(n)]
     public static boolean isValid(String s) {
         HashMap<Character, Character> map = new HashMap<>();
         map.put(')', '(');
@@ -47,7 +47,7 @@ public class Misc {
         return false;
     }
 
-    // 21. Merge Two Sorted Lists
+    // 21. Merge Two Sorted Lists (Easy) [T = O(n + m), S = O(1)]
     // Singly-linked list
     public static class ListNode {
         int val;
@@ -58,8 +58,8 @@ public class Misc {
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode current = dummyHead;
+        ListNode head = new ListNode(0);
+        ListNode current = head;
         while (list1 != null && list2 != null) {
             if (list1.val <= list2.val) {
                 current.next = list1;
@@ -76,7 +76,7 @@ public class Misc {
         if (list2 != null) {
             current.next = list2;
         }
-        return dummyHead.next; // returning the linked list after the dummyHead
+        return head.next; // Returning the node after head
     }
 
     public static String listNodeToString(ListNode head) {
