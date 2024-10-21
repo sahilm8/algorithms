@@ -10,16 +10,14 @@ import java.util.Stack;
 
 // LeetCode Answers
 public class Misc {
-    // 6. Two Sum
+    // 6. Two Sum [T = O(n), S = O(n)]
     public static int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
-        int index = 0;
-        while (index < nums.length) {
-            if (map.containsKey(target - nums[index])) {
-                return new int[] {index, map.get(target - nums[index])};
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[] { map.get(target - nums[i]), i };
             }
-            map.put(nums[index], index);
-            index++;
+            map.put(nums[i], i);
         }
         return new int[] {};
     }
