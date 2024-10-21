@@ -2,6 +2,7 @@ package algorithms.misc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -282,6 +283,31 @@ public class Misc {
         return profit;
     }
 
+    // 1086. High Five
+    public static int[][] highFive(int[][] items) {
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < items.length; i++) {
+            map.putIfAbsent(items[i][0], new ArrayList<>());
+            map.get(items[i][0]).add(items[i][1]);
+        }
+        int[][] result = new int[map.size()][2];
+        int i = 0;
+        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+            int avg = (int) entry
+                .getValue()
+                .stream()
+                .sorted(Collections.reverseOrder())
+                .limit(5)
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0);
+            result[i][0] = entry.getKey();
+            result[i][1] = avg;
+            i++;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
@@ -295,5 +321,8 @@ public class Misc {
         System.out.println(fractionToDecimal(1, 2));
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
         System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
+        System.out.println(Arrays.deepToString(highFive(
+            new int[][] {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}}
+        )));
     }
 }
