@@ -22,27 +22,29 @@ public class Misc {
         return new int[] {};
     }
 
-    // 20. Valid Parenthesis
+    // 20. Valid Parenthesis [T = O(n), S = O(n/2) = O(n)]
     public static boolean isValid(String s) {
-        char[] chars = s.toCharArray();
-        if (chars.length == 1) return false;
-        Stack<Character> stack = new Stack<>();
         HashMap<Character, Character> map = new HashMap<>();
         map.put(')', '(');
-        map.put('}', '{');
         map.put(']', '[');
-        int i = 0;
-        while (i < chars.length) {
-            if (map.containsValue(chars[i])) {
-                stack.push(chars[i]);
-            } else if (!stack.isEmpty() && stack.peek() == map.get(chars[i])) {
-                stack.pop();
+        map.put('}', '{');
+        Stack<Character> stack = new Stack<>();
+        if (s.length() < 2 || map.containsKey(s.charAt(0)))
+            return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsValue(s.charAt(i))) {
+                stack.push(s.charAt(i));
             } else {
-                return false;
+                if (!stack.isEmpty() && stack.peek() == map.get(s.charAt(i))) {
+                        stack.pop();
+                } else {
+                    return false;
+                }
             }
-            i++;
         }
-        return stack.isEmpty();
+        if (stack.isEmpty())
+            return true;
+        return false;
     }
 
     // 21. Merge Two Sorted Lists
