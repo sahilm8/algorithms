@@ -1,5 +1,7 @@
 package algorithms.lc;
 
+import java.util.HashMap;
+
 public class Medium {
      // 1041. Robot Bounded in Circle (Medium) [T = O(n), S = O(1)]
     public static boolean isRobotBounded(String instructions) {
@@ -21,7 +23,7 @@ public class Medium {
         return false;
     }
 
-    // 91. Decode Ways (Medium) [T = O(n), S = O(n) (due to DP array size)]
+    // 91. Decode Ways (Medium) [T = O(n), S = O(n)]
     public static int numDecodings(String s) {
         if (s == null || s.length() == 0 || s.charAt(0) == '0')
             return 0;
@@ -43,8 +45,43 @@ public class Medium {
         return array[array.length - 1];
     }
 
+    // 166. Fraction to Recurring Decimal (Medium) [T = O(log n+d), S = O(n+d)]
+    public static String fractionToDecimal(int numerator, int denominator) {
+        if (numerator == 0) {
+            return "0";
+        }
+        StringBuilder result = new StringBuilder();
+        // XOR: when both have diff signs
+        if ((numerator < 0) ^ (denominator < 0))
+            result.append("-");
+        long num = Math.abs((long) numerator);
+        long den = Math.abs((long) denominator);
+        result.append(num / den);
+        // Manual long division to find repeating remainder
+        HashMap<Long, Integer> map = new HashMap<>();
+        long remainder = num % den;
+        if (remainder != 0)
+            result.append(".");
+        while (remainder != 0) {
+            if (map.containsKey(remainder)) {
+                // For repeating remainder,
+                // get the index and insert "(" and append ")"
+                result.insert(map.get(remainder), "(");
+                result.append(")");
+                break;
+            }
+            // Put last index + 1 (result.length()) into the map
+            map.put(remainder, result.length());
+            remainder *= 10;
+            result.append(remainder / den);
+            remainder %= den;
+        }
+        return result.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
+        System.out.println(fractionToDecimal(-1, -2147483648));
     }
 }
