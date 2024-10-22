@@ -123,6 +123,20 @@ public class Easy {
         return prev;
     }
 
+    // 387. First Unique Character in a String (Easy) [T = O(n), S = O(1)]
+    public static int firstUniqChar(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
@@ -130,5 +144,6 @@ public class Easy {
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
+        System.out.println(firstUniqChar("loveleetcode"));
     }
 }
