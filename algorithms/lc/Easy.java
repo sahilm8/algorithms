@@ -1,7 +1,11 @@
 package algorithms.lc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 public class Easy {
@@ -152,6 +156,31 @@ public class Easy {
         return maxProfit;
     }
 
+    // 1086. High Five (Easy) [T = O(n log n), S = O(n)]
+    public static int[][] highFive(int[][] items) {
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < items.length; i++) {
+            map.putIfAbsent(items[i][0], new ArrayList<>());
+            map.get(items[i][0]).add(items[i][1]);
+        }
+        int[][] result = new int[map.size()][2];
+        int i = 0;
+        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+            int avg = (int) entry
+                    .getValue()
+                    .stream()
+                    .sorted(Collections.reverseOrder())
+                    .limit(5)
+                    .mapToInt(Integer::intValue)
+                    .average()
+                    .orElse(0);
+            result[i][0] = entry.getKey();
+            result[i][1] = avg;
+            i++;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
@@ -161,5 +190,8 @@ public class Easy {
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(firstUniqChar("loveleetcode"));
         System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
+        System.out.println(Arrays.deepToString(highFive(
+            new int[][] {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}}
+        )));
     }
 }
