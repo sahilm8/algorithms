@@ -14,8 +14,8 @@ import java.util.Arrays;
  * of numbers in an unsorted array that sum up to a target value:
  */
 public class TwoPointer {
-    public static int[] twoPointer(int[] arr, int target) {
-        Arrays.sort(arr);
+    public static int[] findPair(int[] arr, int target) {
+        Arrays.sort(arr); // ALWAYS sort first!
         int left = 0;
         int right = arr.length - 1;
         while (left < right) {
@@ -34,6 +34,8 @@ public class TwoPointer {
 
     public static void main(String[] args) {
         System.out.println(
-                "Looking for two values whose sum is 3: " + Arrays.toString(twoPointer(new int[] { 2, 4, 1, 3 }, 3)));
+                "Looking for two values whose sum is 3: "
+                + Arrays.toString(findPair(new int[] { 2, 4, 1, 3 }, 3))
+            );
     }
 }

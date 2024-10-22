@@ -2,8 +2,8 @@ package algorithms.dynamic;
 
 /*
  * Dynamic programming is an algorithmic technique that solves complex problems
- * by breaking them down into simpler subproblems. It stores the results of these
- * subproblems to avoid redundant computations, thus optimizing the overall solution.
+ * by breaking them down into simpler sub-problems. It stores the results of these
+ * sub-problems to avoid redundant computations, thus optimizing the overall solution.
  */
 public class DynamicProgramming {
     // Fibonacci example: calculating the fibonacci value
