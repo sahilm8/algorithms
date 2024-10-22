@@ -115,9 +115,8 @@ public class Misc {
         return 1 + Math.max(left, right);
     }
 
-    // 206. Reverse Linked List
-    // iterative
-    public static ListNode reverseList(ListNode head) {
+    // 206. Reverse Linked List (Easy) [T = O(n), S = O(1)]
+    public ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode current = head;
         while (current != null) {
@@ -129,36 +128,23 @@ public class Misc {
         return prev;
     }
 
-    // recursive
-    public static ListNode _reverseList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode reversedRest = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
-        return reversedRest;
-    }
-
-    // 1041. Robot Bounded in Circle
+    // 1041. Robot Bounded in Circle (Medium) [T = O(n), S = O(1)]
     public static boolean isRobotBounded(String instructions) {
         int x = 0, y = 0;
         int facing = 0; // N E S W
-        int[][] directions = new int[][] {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // N E S W
+        int[][] directions = new int[][] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } }; // N E S W
         for (int i = 0; i < instructions.length(); i++) {
             if (instructions.charAt(i) == 'L') {
-                // Modular arithmetic:
-                // any number % n to will be in the range 0 to n-1 inclusive
-                // Hence, 0 to 3, i.e. 0 = N, 1 = E, 2 = S, 3 = W
-                facing = (facing + 3) % 4; // +3 to turn left
+                facing = (facing + 3) % 4; // Modular arithmetic: x % n in range (0, n-1)
             } else if (instructions.charAt(i) == 'R') {
-                facing = (facing + 1) % 4; // +1 to turn right
+                facing = (facing + 1) % 4;
             } else {
                 x += directions[facing][0];
                 y += directions[facing][1];
             }
         }
-        if ((x == 0 && y == 0) || facing != 0) return true;
+        if ((x == 0 && y == 0) || facing != 0)
+            return true; // Bounded circle
         return false;
     }
 
@@ -183,7 +169,6 @@ public class Misc {
                 ways[i] += ways[i - 2]; 
             }
         }
-        System.out.println(Arrays.toString(ways));
         return ways[s.length()];
     }
 
@@ -313,7 +298,6 @@ public class Misc {
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
-        System.out.println(listNodeToString(_reverseList(new ListNode(1, new ListNode(2, new ListNode(3))))));
         System.out.println(isRobotBounded("GLRLLGLL"));
         System.out.println(numDecodings("226"));
         System.out.println(firstUniqChar("loveleetcode"));
