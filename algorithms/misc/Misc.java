@@ -22,7 +22,7 @@ public class Misc {
         return new int[] {};
     }
 
-    // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n/2) = O(n)]
+    // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n/2) (worst case = O(n))]
     public static boolean isValid(String s) {
         HashMap<Character, Character> map = new HashMap<>();
         map.put(')', '(');
@@ -93,7 +93,7 @@ public class Misc {
         return sb.toString();
     }
 
-    // 104. Max Depth of a Binary Tree
+    // 104. Max Depth of a Binary Tree (Easy) [T = O(n), S = O(h) (worst case = O(n), best case = O(log n))]
     public static class TreeNode {
         int val;
         TreeNode left;
@@ -107,14 +107,12 @@ public class Misc {
         }
     }
 
-    // Calculated using resursive DFS (Depth First Search)
     public static int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int leftDepth = maxDepth(root.left);
-        int rightDepth = maxDepth(root.right);
-        return 1 + Math.max(leftDepth, rightDepth);
+        if (root == null) return 0;
+        // Recursive DFS (Depth-First Search)
+        int left = maxDepth(root.left);
+        int right =  maxDepth(root.right);
+        return 1 + Math.max(left, right);
     }
 
     // 206. Reverse Linked List
@@ -309,6 +307,7 @@ public class Misc {
     }
 
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
