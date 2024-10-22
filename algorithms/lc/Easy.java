@@ -137,6 +137,21 @@ public class Easy {
         return -1;
     }
 
+    // 121. Best Time to Buy and Sell Stock (Easy) [T = O(n), S = O(1)]
+    public static int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        int lowestPrice = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < lowestPrice) {
+                lowestPrice = prices[i];
+            }
+            if ((prices[i] - lowestPrice) > maxProfit) {
+                maxProfit = prices[i] - lowestPrice;
+            }
+        }
+        return maxProfit;
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
@@ -145,5 +160,6 @@ public class Easy {
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
         System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(firstUniqChar("loveleetcode"));
+        System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
     }
 }
