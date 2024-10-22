@@ -17,7 +17,7 @@ public class Easy {
         return new int[] {};
     }
 
-    // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n/2) (worst case = O(n))]
+    // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n)]
     public static boolean isValid(String s) {
         HashMap<Character, Character> map = new HashMap<>();
         map.put(')', '(');
@@ -88,7 +88,7 @@ public class Easy {
         return sb.toString();
     }
 
-    // 104. Max Depth of a Binary Tree (Easy) [T = O(n), S = O(h) (worst case = O(n), best case = O(log n))]
+    // 104. Max Depth of a Binary Tree (Easy) [T = O(n), S = O(h)]
     public static class TreeNode {
         int val;
         TreeNode left;
