@@ -181,6 +181,34 @@ public class Easy {
         return result;
     }
 
+    // 844. Backspace String Compare (Easy) [T = O(n + m), S = O(n + m)]
+    public static boolean backspaceCompare(String s, String t) {
+        if ((s.length() == 0) ^ (t.length() == 0))
+            return false;
+
+        if (setStack(s).equals(setStack(t)))
+            return true;
+        return false;
+    }
+
+    public static String setStack(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isAlphabetic(s.charAt(i))) {
+                stack.push(s.charAt(i));
+            } else {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Character c : stack) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
@@ -193,5 +221,6 @@ public class Easy {
         System.out.println(Arrays.deepToString(highFive(
             new int[][] {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}}
         )));
+        System.out.println(backspaceCompare("ab#c", "ad#c"));
     }
 }
