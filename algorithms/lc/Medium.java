@@ -119,10 +119,26 @@ public class Medium {
         return result;
     }
     
+    // 1823. Find the Winner of the Circular Game (Medium) [T = O(n^2), S = O(n)]
+    public static int findTheWinner(int n, int k) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            list.add(i);
+        }
+        int index = 0;
+        while (list.size() > 1) {
+            // Modulo wrap-around arithmetic: x % n in range (0, n-1)
+            index = (index + k - 1) % list.size();
+            list.remove(index);
+        }
+        return list.get(0);
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
         System.out.println(fractionToDecimal(-1, -2147483648));
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
+        System.out.println(findTheWinner(5, 2));
     }
 }
