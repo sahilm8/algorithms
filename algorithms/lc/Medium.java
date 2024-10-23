@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Medium {
      // 1041. Robot Bounded in Circle (Medium) [T = O(n), S = O(1)]
@@ -134,11 +136,37 @@ public class Medium {
         return list.get(0);
     }
 
+    // 3167. Better Compression of String (Medium) [T = O(n), S = O(k)]
+    public static String betterCompression(String compressed) {
+        TreeMap<Character, Integer> map = new TreeMap<>();
+        for (int i = 0; i < compressed.length(); i++) {
+            if (Character.isAlphabetic(compressed.charAt(i))) {
+                StringBuilder s = new StringBuilder();
+                for (int j = i + 1; j < compressed.length(); j++) {
+                    if (Character.isDigit(compressed.charAt(j))) {
+                        s.append(compressed.charAt(j));
+                    } else {
+                        break;
+                    }
+                }
+                map.put(compressed.charAt(i), map.getOrDefault(compressed.charAt(i), 0)
+                        + Integer.parseInt(s.toString()));
+            }
+        }
+        StringBuilder s = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            s.append(entry.getKey());
+            s.append(entry.getValue());
+        }
+        return s.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
         System.out.println(fractionToDecimal(-1, -2147483648));
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
         System.out.println(findTheWinner(5, 2));
+        System.out.println(betterCompression("i10g6u6"));
     }
 }
