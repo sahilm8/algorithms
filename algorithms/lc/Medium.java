@@ -13,7 +13,7 @@ public class Medium {
         int[][] directions = new int[][] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } }; // N E S W
         for (int i = 0; i < instructions.length(); i++) {
             if (instructions.charAt(i) == 'L') {
-                facing = (facing + 3) % 4; // Modular arithmetic: x % n in range (0, n-1)
+                facing = (facing + 3) % 4; // Modulo arithmetic: x % n in range (0, n-1)
             } else if (instructions.charAt(i) == 'R') {
                 facing = (facing + 1) % 4;
             } else {
