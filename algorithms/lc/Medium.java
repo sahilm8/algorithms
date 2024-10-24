@@ -3,8 +3,10 @@ package algorithms.lc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Medium {
@@ -161,6 +163,29 @@ public class Medium {
         return s.toString();
     }
 
+    // 3. Longest Substring Without Repeating Characters (Medium) [T = O(n), S = O(min(n, m))]
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLength = 0;
+        Set<Character> charSet = new HashSet<>();
+        int left = 0;
+        
+        for (int right = 0; right < n; right++) {
+            if (!charSet.contains(s.charAt(right))) {
+                charSet.add(s.charAt(right));
+                maxLength = Math.max(maxLength, right - left + 1);
+            } else {
+                while (charSet.contains(s.charAt(right))) {
+                    charSet.remove(s.charAt(left));
+                    left++;
+                }
+                charSet.add(s.charAt(right));
+            }
+        }
+        
+        return maxLength;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -168,5 +193,6 @@ public class Medium {
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
         System.out.println(findTheWinner(5, 2));
         System.out.println(betterCompression("i10g6u6"));
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
     }
 }
