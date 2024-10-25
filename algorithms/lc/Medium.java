@@ -88,12 +88,11 @@ public class Medium {
 
     // 15. 3Sum (Medium) [T = O(n^2), S = O(1)]
     public static List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        // ALWAYS sort for two pointers
         Arrays.sort(nums);
-        // A counter and two pointers (i, left, right)
+        List<List<Integer>> triplets = new ArrayList<>();
+        // Counter and two pointers
+        // index (i), left (i + 1), right (nums.length - 1)
         for (int i = 0; i < nums.length; i++) {
-            // Skip duplicate element
             if (i > 0 && nums[i] == nums[i - 1])
                 continue;
             int left = i + 1, right = nums.length - 1;
@@ -104,13 +103,11 @@ public class Medium {
                     list.add(nums[i]);
                     list.add(nums[left]);
                     list.add(nums[right]);
-                    result.add(list);
-                    while (left < right && nums[left] == nums[left + 1]) {
+                    triplets.add(list);
+                    while (left < right && nums[left] == nums[left + 1])
                         left++;
-                    }
-                    while (left < right && nums[right] == nums[right - 1]) {
+                    while (left < right && nums[right] == nums[right - 1])
                         right--;
-                    }
                     left++;
                     right--;
                 } else if (sum < 0) {
@@ -120,7 +117,7 @@ public class Medium {
                 }
             }
         }
-        return result;
+        return triplets;
     }
     
     // 1823. Find the Winner of the Circular Game (Medium) [T = O(n^2), S = O(n)]
