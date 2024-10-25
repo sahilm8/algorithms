@@ -180,6 +180,22 @@ public class Medium {
         return maxLength;
     }
 
+    // 49. Group Anagrams (Medium) [T = O(n * m * log(m)), S = O(n * m)]
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+        List<List<String>> list = new ArrayList<>();
+        for (int i = 0; i < strs.length; i++) {
+            char[] chars = strs[i].toCharArray();
+            Arrays.sort(chars);
+            String sorted = new String(chars);
+            map.computeIfAbsent(sorted, c -> new ArrayList<>()).add(strs[i]);
+            if (!list.contains(map.get(sorted))) {
+                list.add(map.get(sorted));
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -188,5 +204,6 @@ public class Medium {
         System.out.println(findTheWinner(5, 2));
         System.out.println(betterCompression("i10g6u6"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
+        System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
     }
 }
