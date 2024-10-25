@@ -143,19 +143,19 @@ public class Easy {
 
     // 121. Best Time to Buy and Sell Stock (Easy) [T = O(n), S = O(1)]
     public static int maxProfit(int[] prices) {
-        int maxProfit = 0;
         int lowestPrice = prices[0];
+        int maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {
             if (prices[i] < lowestPrice) {
                 lowestPrice = prices[i];
             }
-            if ((prices[i] - lowestPrice) > maxProfit) {
+            if (maxProfit < prices[i] - lowestPrice) {
                 maxProfit = prices[i] - lowestPrice;
             }
         }
         return maxProfit;
     }
-
+    
     // 1086. High Five (Easy) [T = O(n log n), S = O(n)]
     public static int[][] highFive(int[][] items) {
         HashMap<Integer, List<Integer>> map = new HashMap<>();
