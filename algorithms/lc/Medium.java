@@ -196,6 +196,20 @@ public class Medium {
         return list;
     }
 
+    // 198. House Robber (Medium) [T = O(n), S = O(n)]
+    public static int rob(int[] nums) {
+        if (nums.length == 1) return nums[0];
+        if (nums.length == 2) return Math.max(nums[0], nums[1]);
+        // DP
+        int[] array = new int[nums.length];
+        array[0] = nums[0];
+        array[1] = nums[1];
+        for (int i = 2; i < nums.length; i++) {
+            array[i] = Math.max(array[i - 1], array[i - 2] + nums[i]);
+        }
+        return array[nums.length - 1];
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -205,5 +219,6 @@ public class Medium {
         System.out.println(betterCompression("i10g6u6"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
+        System.out.println(rob(new int[] {2,1,1,2}));
     }
 }
