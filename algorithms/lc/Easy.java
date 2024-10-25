@@ -183,30 +183,26 @@ public class Easy {
 
     // 844. Backspace String Compare (Easy) [T = O(n + m), S = O(n + m)]
     public static boolean backspaceCompare(String s, String t) {
-        if ((s.length() == 0) ^ (t.length() == 0))
-            return false;
-
-        if (setStack(s).equals(setStack(t)))
+        if (getString(s).equals(getString(t)))
             return true;
         return false;
     }
 
-    public static String setStack(String s) {
+    public static String getString(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             if (Character.isAlphabetic(s.charAt(i))) {
                 stack.push(s.charAt(i));
             } else {
-                if (!stack.isEmpty()) {
+                if (!stack.isEmpty())
                     stack.pop();
-                }
             }
         }
-        StringBuilder sb = new StringBuilder();
-        for (Character c : stack) {
-            sb.append(c);
+        char[] chars = new char[stack.size()];
+        for (int i = 0; i < stack.size(); i++) {
+            chars[i] = stack.get(i);
         }
-        return sb.toString();
+        return new String(chars);
     }
 
     public static void main(String[] args) {
