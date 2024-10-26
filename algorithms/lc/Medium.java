@@ -189,13 +189,13 @@ public class Medium {
 
     // 49. Group Anagrams (Medium) [T = O(n * m * log(m)), S = O(n * m)]
     public static List<List<String>> groupAnagrams(String[] strs) {
-        HashMap<String, List<String>> map = new HashMap<>();
         List<List<String>> list = new ArrayList<>();
+        HashMap<String, List<String>> map = new HashMap<>();
         for (int i = 0; i < strs.length; i++) {
             char[] chars = strs[i].toCharArray();
             Arrays.sort(chars);
             String sorted = new String(chars);
-            map.computeIfAbsent(sorted, c -> new ArrayList<>()).add(strs[i]);
+            map.computeIfAbsent(sorted, k -> new ArrayList<>()).add(strs[i]);
             if (!list.contains(map.get(sorted))) {
                 list.add(map.get(sorted));
             }
