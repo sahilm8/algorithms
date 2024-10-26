@@ -210,9 +210,9 @@ public class Medium {
         // DP
         int[] array = new int[nums.length];
         array[0] = nums[0];
-        array[1] = nums[1];
+        array[1] = Math.max(nums[0], nums[1]);
         for (int i = 2; i < nums.length; i++) {
-            array[i] = Math.max(array[i - 1], array[i - 2] + nums[i]);
+            array[i] += Math.max(array[i - 1], array[i - 2] + nums[i]); 
         }
         return array[nums.length - 1];
     }
