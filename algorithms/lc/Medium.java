@@ -170,11 +170,11 @@ public class Medium {
         return sb.toString();
     }
 
-    // 3. Longest Substring Without Repeating Characters (Medium) [T = O(n), S = O(min(m, n))]
+    // 3. Longest Substring Without Repeating Characters (Medium) [T = O(n), S = O(n)]
     public static int lengthOfLongestSubstring(String s) {
-        // Two pointers (left, right) & Set
         Set<Character> set = new HashSet<>();
         int maxLength = 0;
+        // TP & SW
         int left = 0;
         for (int right = 0; right < s.length(); right++) {
             while (set.contains(s.charAt(right))) {
