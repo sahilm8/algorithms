@@ -217,6 +217,29 @@ public class Medium {
         return array[nums.length - 1];
     }
 
+    // 647. Palindromic Substrings (Medium) [T = O(n^2), S = O(1)]
+    public static int countSubstrings(String s) {
+        if (s.length() == 1) return 1;
+        int palindromes = 0;
+        for (int i = 0; i < s.length(); i++) {
+            // Odd palindromes (1 center)
+            palindromes += expandAroundCenter(s, i, i);
+            // Even palindromes (2 center)
+            palindromes += expandAroundCenter(s, i, i + 1);
+        }
+        return palindromes;
+    }
+
+    public static int expandAroundCenter(String s, int left, int right) {
+        int count = 0;
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            count++;
+            left--;
+            right++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -227,5 +250,6 @@ public class Medium {
         System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
         System.out.println(rob(new int[] {2,1,1,2}));
+        System.out.println(countSubstrings("aaa"));
     }
 }
