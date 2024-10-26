@@ -145,29 +145,29 @@ public class Medium {
         return winner;
     }
 
-    // 3167. Better Compression of String (Medium) [T = O(n), S = O(k)]
+    // 3167. Better Compression of String (Medium) [T = O(n * k * log k), S = O(n * k)]
     public static String betterCompression(String compressed) {
         TreeMap<Character, Integer> map = new TreeMap<>();
         for (int i = 0; i < compressed.length(); i++) {
             if (Character.isAlphabetic(compressed.charAt(i))) {
-                StringBuilder s = new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 for (int j = i + 1; j < compressed.length(); j++) {
                     if (Character.isDigit(compressed.charAt(j))) {
-                        s.append(compressed.charAt(j));
-                    } else {
-                        break;
+                        sb.append(compressed.charAt(j));
                     }
+                    if (Character.isAlphabetic(compressed.charAt(j)))
+                        break;
                 }
-                map.put(compressed.charAt(i), map.getOrDefault(compressed.charAt(i), 0)
-                        + Integer.parseInt(s.toString()));
+                map.put(compressed.charAt(i),
+                        map.getOrDefault(compressed.charAt(i), 0) + Integer.parseInt(sb.toString()));
             }
         }
-        StringBuilder s = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            s.append(entry.getKey());
-            s.append(entry.getValue());
+            sb.append(entry.getKey());
+            sb.append(entry.getValue());
         }
-        return s.toString();
+        return sb.toString();
     }
 
     // 3. Longest Substring Without Repeating Characters (Medium) [T = O(n), S = O(min(m, n))]
