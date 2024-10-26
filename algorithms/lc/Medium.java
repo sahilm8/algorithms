@@ -120,19 +120,29 @@ public class Medium {
         return triplets;
     }
     
-    // 1823. Find the Winner of the Circular Game (Medium) [T = O(n^2), S = O(n)]
+    // 1823. Find the Winner of the Circular Game (Medium) [T = O(n * k), S = O(n)]
     public static int findTheWinner(int n, int k) {
-        ArrayList<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
             list.add(i);
         }
         int index = 0;
         while (list.size() > 1) {
-            // Modulo wrap-around arithmetic: x % n in range (0, n-1)
+            // Modulo arithmetic: i % n in range (0, n - 1)
             index = (index + k - 1) % list.size();
             list.remove(index);
         }
         return list.get(0);
+    }
+
+    // Josephus Problem (Josephus Permutation) [T = O(n), S = O(1)]
+    public static int _findTheWinner(int n, int k) {
+        int winner = 1;
+        for (int i = 2; i <= n; i++) {
+            // + 1 to shift from 0-based to 1-based indexing
+            winner = (winner + k - 1) % i + 1;
+        }
+        return winner;
     }
 
     // 3167. Better Compression of String (Medium) [T = O(n), S = O(k)]
@@ -212,7 +222,7 @@ public class Medium {
         System.out.println(numDecodings("226"));
         System.out.println(fractionToDecimal(-1, -2147483648));
         System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
-        System.out.println(findTheWinner(5, 2));
+        System.out.println(_findTheWinner(5, 2));
         System.out.println(betterCompression("i10g6u6"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
         System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
