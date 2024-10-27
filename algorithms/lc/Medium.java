@@ -256,6 +256,25 @@ public class Medium {
         return sb.toString();
     }
 
+    // 11. Container With Most Water (Medium) [T = O(n), S = O(1)]
+    public static int maxArea(int[] height) {
+        // TP
+        int maxArea = 0;
+        int left = 0, right = height.length - 1;
+        while (left < right) {
+            int length = Math.min(height[left], height[right]);
+            int breadth = right - left;
+            int area = length * breadth;
+            maxArea = Math.max(area, maxArea);
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return maxArea;
+    } 
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -268,5 +287,6 @@ public class Medium {
         System.out.println(rob(new int[] {2,1,1,2}));
         System.out.println(countSubstrings("aaa"));
         System.out.println(smallestNumber("IIIDIDDD"));
+        System.out.println(maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
     }
 }
