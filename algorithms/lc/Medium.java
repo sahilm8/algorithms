@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class Medium {
@@ -240,6 +241,21 @@ public class Medium {
         return count;
     }
 
+    // 2375. Construct Smallest Number From DI String (Medium) [T = O(n), S = O(n)]
+    public static String smallestNumber(String pattern) {
+        StringBuilder sb = new StringBuilder();
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i <= pattern.length(); i++) {
+            stack.push(i + 1);
+            if (i == pattern.length() || pattern.charAt(i) == 'I') {
+                while (!stack.isEmpty()) {
+                    sb.append(stack.pop());
+                }
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -251,5 +267,6 @@ public class Medium {
         System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
         System.out.println(rob(new int[] {2,1,1,2}));
         System.out.println(countSubstrings("aaa"));
+        System.out.println(smallestNumber("IIIDIDDD"));
     }
 }
