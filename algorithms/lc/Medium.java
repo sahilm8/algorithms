@@ -247,12 +247,24 @@ public class Medium {
 
     // 2375. Construct Smallest Number From DI String (Medium) [T = O(n), S = O(n)]
     public static String smallestNumber(String pattern) {
-        StringBuilder sb = new StringBuilder();
+        // Stack & SB
+        // IIIDIDDD
+        // i=0: push(1), see 'I', pop -> sb="1"
+        // i=1: push(2), see 'I', pop -> sb="12"
+        // i=2: push(3), see 'I', pop -> sb="123"
+        // i=3: push(4), see 'D', keep in stack
+        // i=4: push(5), see 'I', pop -> sb="12354"
+        // i=5: push(6), see 'D', keep in stack
+        // i=6: push(7), see 'D', keep in stack
+        // i=7: push(8), see 'D', keep in stack
+        // i=8: push(9), end reached, pop all -> sb="123549876"
         Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i <= pattern.length(); i++) {
             stack.push(i + 1);
             if (i == pattern.length() || pattern.charAt(i) == 'I') {
-                while (!stack.isEmpty()) {
+                while(!stack.isEmpty()) {
+                    // Gradually building the lexicographically smallest string
                     sb.append(stack.pop());
                 }
             }
