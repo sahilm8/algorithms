@@ -173,19 +173,21 @@ public class Medium {
 
     // 3. Longest Substring Without Repeating Characters (Medium) [T = O(n), S = O(n)]
     public static int lengthOfLongestSubstring(String s) {
+        int maxSize = 0;
+        // Set & TP
         Set<Character> set = new HashSet<>();
-        int maxLength = 0;
-        // TP & SW
         int left = 0;
         for (int right = 0; right < s.length(); right++) {
-            while (set.contains(s.charAt(right))) {
-                set.remove(s.charAt(left));
-                left++;
+            if (set.contains(s.charAt(right))) {
+                while (set.contains(s.charAt(right))) {
+                    set.remove(s.charAt(left));
+                    left++;
+                }
             }
             set.add(s.charAt(right));
-            maxLength = Math.max(maxLength, right - left + 1);
+            maxSize = Math.max(maxSize, right - left + 1);
         }
-        return maxLength;
+        return maxSize;
     }
 
     // 49. Group Anagrams (Medium) [T = O(n * m * log(m)), S = O(n * m)]
