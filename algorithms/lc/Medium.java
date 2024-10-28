@@ -208,14 +208,16 @@ public class Medium {
 
     // 198. House Robber (Medium) [T = O(n), S = O(n)]
     public static int rob(int[] nums) {
-        if (nums.length == 1) return nums[0];
-        if (nums.length == 2) return Math.max(nums[0], nums[1]);
+        if (nums.length == 1)
+            return nums[0];
+        if (nums.length == 2)
+            return Math.max(nums[0], nums[1]);
         // DP
         int[] array = new int[nums.length];
         array[0] = nums[0];
         array[1] = Math.max(nums[0], nums[1]);
         for (int i = 2; i < nums.length; i++) {
-            array[i] += Math.max(array[i - 1], array[i - 2] + nums[i]); 
+            array[i] += Math.max(array[i - 1], nums[i] + array[i - 2]);
         }
         return array[nums.length - 1];
     }
