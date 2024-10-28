@@ -298,6 +298,16 @@ public class Medium {
         }
     }
 
+    // 55. Jump Game (medium) [T = O(n), S = O(1)]
+    public static boolean canJump(int[] nums) {
+        int max = 0;
+        for (int i = 0; i <= max && i < nums.length; i++) {
+            if (max >= nums.length - 1) return true;
+            max = Math.max(max, i + nums[i]);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -312,5 +322,6 @@ public class Medium {
         System.out.println(smallestNumber("IIIDIDDD"));
         System.out.println(maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
         System.out.println(generateParenthesis(3));
+        System.out.println(canJump(new int[] {2,3,1,1,4}));
     }
 }
