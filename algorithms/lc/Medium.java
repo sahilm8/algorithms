@@ -273,7 +273,30 @@ public class Medium {
             }
         }
         return maxArea;
-    } 
+    }
+
+    // 22. Generate Parentheses (Medium) [T = O(2^n), S = O(n)]
+    public static List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, "", 0, 0, n);
+        return result;
+    }
+
+    // Recursive Backtracking
+    public static void backtrack(List<String> result, String s, int open, int close, int n) {
+        if (s.length() == n * 2) { // each valid compination has n * 2 chars
+            result.add(s);
+            return;
+        }
+        // less open brackets than n
+        if (open < n) {
+            backtrack(result, s + "(", open + 1, close, n);
+        }
+        // more open brackets than close brackets
+        if (open > close) {
+            backtrack(result, s + ")", open, close + 1, n);
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
@@ -288,5 +311,6 @@ public class Medium {
         System.out.println(countSubstrings("aaa"));
         System.out.println(smallestNumber("IIIDIDDD"));
         System.out.println(maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
+        System.out.println(generateParenthesis(3));
     }
 }
