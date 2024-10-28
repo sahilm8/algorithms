@@ -275,13 +275,12 @@ public class Medium {
     // 11. Container With Most Water (Medium) [T = O(n), S = O(1)]
     public static int maxArea(int[] height) {
         // TP
-        int maxArea = 0;
-        int left = 0, right = height.length - 1;
+        int maxArea = 0, left = 0, right = height.length - 1;
         while (left < right) {
             int length = Math.min(height[left], height[right]);
             int breadth = right - left;
             int area = length * breadth;
-            maxArea = Math.max(area, maxArea);
+            maxArea = Math.max(maxArea, area);
             if (height[left] < height[right]) {
                 left++;
             } else {
