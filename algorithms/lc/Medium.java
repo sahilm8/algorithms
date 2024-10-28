@@ -224,20 +224,20 @@ public class Medium {
 
     // 647. Palindromic Substrings (Medium) [T = O(n^2), S = O(1)]
     public static int countSubstrings(String s) {
-        if (s.length() == 1) return 1;
-        int palindromes = 0;
+        int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            // Odd palindromes (1 center)
-            palindromes += expandAroundCenter(s, i, i);
-            // Even palindromes (2 center)
-            palindromes += expandAroundCenter(s, i, i + 1);
+            // Odd Palindrome (1 center) eg: abc, aaa
+            count += expandOutward(s, i, i);
+            // Even Palindrome (2 center) eg: abcd, aaaa
+            count += expandOutward(s, i, i + 1);
         }
-        return palindromes;
+        return count;
     }
 
-    public static int expandAroundCenter(String s, int left, int right) {
+    // TP: Expand using left & right
+    public static int expandOutward(String s, int left, int right) {
         int count = 0;
-        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+        while (left >= 0 && right <= s.length() - 1 && s.charAt(left) == s.charAt(right)) {
             count++;
             left--;
             right++;
