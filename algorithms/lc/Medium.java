@@ -192,18 +192,18 @@ public class Medium {
 
     // 49. Group Anagrams (Medium) [T = O(n * m * log(m)), S = O(n * m)]
     public static List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> list = new ArrayList<>();
-        HashMap<String, List<String>> map = new HashMap<>();
+        List<List<String>> result = new ArrayList<>();
+        Map<String, List<String>> map = new HashMap<>();
         for (int i = 0; i < strs.length; i++) {
             char[] chars = strs[i].toCharArray();
             Arrays.sort(chars);
             String sorted = new String(chars);
             map.computeIfAbsent(sorted, k -> new ArrayList<>()).add(strs[i]);
-            if (!list.contains(map.get(sorted))) {
-                list.add(map.get(sorted));
+            if (!result.contains(map.get(sorted))) {
+                result.add(map.get(sorted));
             }
         }
-        return list;
+        return result;
     }
 
     // 198. House Robber (Medium) [T = O(n), S = O(n)]
