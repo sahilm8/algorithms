@@ -264,7 +264,7 @@ public class Medium {
             stack.push(i + 1);
             if (i == pattern.length() || pattern.charAt(i) == 'I') {
                 while(!stack.isEmpty()) {
-                    // Gradually building the lexicographically smallest string
+                    // Gradually building the lexicographically smallest string based on LIFO
                     sb.append(stack.pop());
                 }
             }
