@@ -313,7 +313,7 @@ public class Medium {
         }
     }
 
-    // 55. Jump Game (medium) [T = O(n), S = O(1)]
+    // 55. Jump Game (Medium) [T = O(n), S = O(1)]
     public static boolean canJump(int[] nums) {
         int max = 0;
         for (int i = 0; i <= max && i < nums.length; i++) {
@@ -323,6 +323,17 @@ public class Medium {
             return true;
         }
         return false;
+    }
+
+    // 122. Best Time to Buy and Sell Stock II (Medium) [T = O(n), S = O(1)]
+    public static int maxProfit(int[] prices) {
+        int totalProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                totalProfit += prices[i] - prices[i - 1];
+            }
+        }
+        return totalProfit;
     }
 
     public static void main(String[] args) {
@@ -340,5 +351,6 @@ public class Medium {
         System.out.println(maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
         System.out.println(generateParenthesis(3));
         System.out.println(canJump(new int[] {2,3,1,1,4}));
+        System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
     }
 }
