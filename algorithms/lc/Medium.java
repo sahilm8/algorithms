@@ -53,7 +53,7 @@ public class Medium {
         return array[array.length - 1];
     }
 
-    // 166. Fraction to Recurring Decimal (Medium) [T = O(log n+d), S = O(n+d)]
+    // 166. Fraction to Recurring Decimal (Medium) [T = O(log(n) + d), S = O(n+d)]
     public static String fractionToDecimal(int numerator, int denominator) {
         if (numerator == 0) {
             return "0";
@@ -146,7 +146,7 @@ public class Medium {
         return winner;
     }
 
-    // 3167. Better Compression of String (Medium) [T = O(n * k * log k), S = O(n * k)]
+    // 3167. Better Compression of String (Medium) [T = O(n * k * log(k)), S = O(n * k)]
     public static String betterCompression(String compressed) {
         TreeMap<Character, Integer> map = new TreeMap<>();
         for (int i = 0; i < compressed.length(); i++) {
@@ -317,8 +317,10 @@ public class Medium {
     public static boolean canJump(int[] nums) {
         int max = 0;
         for (int i = 0; i <= max && i < nums.length; i++) {
-            if (max >= nums.length - 1) return true;
             max = Math.max(max, i + nums[i]);
+        }
+        if (max >= nums.length - 1) {
+            return true;
         }
         return false;
     }

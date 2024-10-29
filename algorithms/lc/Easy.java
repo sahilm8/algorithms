@@ -156,7 +156,7 @@ public class Easy {
         return maxProfit;
     }
     
-    // 1086. High Five (Easy) [T = O(n log n), S = O(n)]
+    // 1086. High Five (Easy) [T = O(n log(n)), S = O(n)]
     public static int[][] highFive(int[][] items) {
         HashMap<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < items.length; i++) {
