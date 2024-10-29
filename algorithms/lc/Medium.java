@@ -336,6 +336,33 @@ public class Medium {
         return totalProfit;
     }
 
+    // 152. Maximum Product Subarray (Medium) [T = O(n), S = O(1)]
+    // Variant of Kadane's Algorithm
+    // DP that tracks both maximum and minimum products
+    // because with multiplication, a minimum product can
+    // become maximum when multiplied by a negative number.
+    public static int maxProduct(int[] nums) {
+        int max = nums[0], min = nums[0], total = 0;
+        for (int i = 1; i < nums.length; i++) {
+            int temp = max;
+            max = Math.max(nums[i], Math.max(nums[i] * max, nums[i] * min));
+            min = Math.min(nums[i], Math.min(nums[i] * temp, nums[i] * min));
+            total = Math.max(total, max);
+        }
+        return total;
+    }
+
+    // Kadane's Algorithm: Find the max subarray sum [T = O(n), S = O(1)]
+    public static int maxSum(int[] nums) {
+        int max = nums[0];
+        int total = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            max = Math.max(nums[i], nums[i] + max);
+            total = Math.max(total, max);
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -352,5 +379,7 @@ public class Medium {
         System.out.println(generateParenthesis(3));
         System.out.println(canJump(new int[] {2,3,1,1,4}));
         System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
+        System.out.println(maxProduct(new int[] {2,3,-2,4}));
+        System.out.println(maxSum(new int[] {2,3,-2,4}));
     }
 }
