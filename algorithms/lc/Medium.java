@@ -342,7 +342,7 @@ public class Medium {
     // because with multiplication, a minimum product can
     // become maximum when multiplied by a negative number.
     public static int maxProduct(int[] nums) {
-        int max = nums[0], min = nums[0], total = 0;
+        int max = nums[0], min = nums[0], total = nums[0];
         for (int i = 1; i < nums.length; i++) {
             int temp = max;
             max = Math.max(nums[i], Math.max(nums[i] * max, nums[i] * min));
