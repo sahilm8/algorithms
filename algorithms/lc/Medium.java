@@ -146,18 +146,18 @@ public class Medium {
         return winner;
     }
 
-    // 3167. Better Compression of String (Medium) [T = O(n * k * log(k)), S = O(n * k)]
+    // 3167. Better Compression of String (Medium) [T = O(n^2), S = O(n)]
     public static String betterCompression(String compressed) {
-        TreeMap<Character, Integer> map = new TreeMap<>();
+        Map<Character, Integer> map = new TreeMap<>();
         for (int i = 0; i < compressed.length(); i++) {
             if (Character.isAlphabetic(compressed.charAt(i))) {
                 StringBuilder sb = new StringBuilder();
                 for (int j = i + 1; j < compressed.length(); j++) {
                     if (Character.isDigit(compressed.charAt(j))) {
                         sb.append(compressed.charAt(j));
-                    }
-                    if (Character.isAlphabetic(compressed.charAt(j)))
+                    } else {
                         break;
+                    }
                 }
                 map.put(compressed.charAt(i),
                         map.getOrDefault(compressed.charAt(i), 0) + Integer.parseInt(sb.toString()));
