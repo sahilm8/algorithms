@@ -205,6 +205,22 @@ public class Easy {
         return new String(chars);
     }
 
+    // 70. Climb Stairs (Easy) [T = O(n), S = O(1)]
+    public static int climbStairs(int n) {
+        // DP
+        // 1 2 3
+        // 1 -> 1-2-3
+        // 2 -> 1 2-3
+        // 3 -> 1-2 3
+        int[] array = new int[n + 1];
+        array[0] = 1;
+        array[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            array[i] += array[i - 1] + array[i - 2];
+        }
+        return array[n];
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
         System.out.println(isValid("([]"));
@@ -218,5 +234,6 @@ public class Easy {
             new int[][] {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}}
         )));
         System.out.println(backspaceCompare("ab#c", "ad#c"));
+        System.out.println(climbStairs(3));
     }
 }
