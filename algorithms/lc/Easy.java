@@ -181,28 +181,26 @@ public class Easy {
         return result;
     }
 
-    // 844. Backspace String Compare (Easy) [T = O(n + m), S = O(n + m)]
+    // 844. Backspace String Compare (Easy) [T = O(n), S = O(n)]
     public static boolean backspaceCompare(String s, String t) {
-        if (getString(s).equals(getString(t)))
-            return true;
-        return false;
+        return formatString(s).equals(formatString(t)) ? true : false;
     }
 
-    public static String getString(String s) {
+    public static String formatString(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            if (Character.isAlphabetic(s.charAt(i))) {
-                stack.push(s.charAt(i));
-            } else {
-                if (!stack.isEmpty())
-                    stack.pop();
+            if (s.charAt(i) == '#' && !stack.isEmpty()) {
+                stack.pop();
+            }
+            if (s.charAt(i) != '#') {
+                stack.add(s.charAt(i));
             }
         }
-        char[] chars = new char[stack.size()];
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < stack.size(); i++) {
-            chars[i] = stack.get(i);
+            sb.append(stack.get(i));
         }
-        return new String(chars);
+        return sb.toString();
     }
 
     // 70. Climb Stairs (Easy) [T = O(n), S = O(1)]
