@@ -461,5 +461,6 @@ public class Medium {
         System.out.println(minSubArrayLen(7, new int[] {2,3,1,2,4,3}));
         System.out.println(nthUglyNumber(10));
         System.out.println(maxSubArrayLen(new int[] {1,-1,5,-2,3}, 3));
+        System.out.println(compress(new char[] {'a','b','b','b','b','b','b','b','b','b','b','b','b'}));
     }
 }
