@@ -33,13 +33,12 @@ public class Medium {
 
     // 91. Decode Ways (Medium) [T = O(n), S = O(n)]
     public static int numDecodings(String s) {
-        if (s == null || s.length() == 0 || s.charAt(0) == '0')
-            return 0;
-        // Dynamic programming: dynamically build up to the result
-        int[] array = new int[s.length() + 1]; // 0 to s.length inclusive
-        // Example: 226 => 1 1 2 3
-        array[0] = 1; // DP convention
-        array[1] = 1; // 1 way to decode a single number
+        if (s.charAt(0) == '0') return 0;
+        if (s.length() == 1) return 1;
+        // DP
+        int[] array = new int[s.length() + 1];
+        array[0] = 1;
+        array[1] = 1;
         for (int i = 2; i <= s.length(); i++) {
             int singleDigit = Integer.parseInt(s.substring(i - 1, i));
             int doubleDigit = Integer.parseInt(s.substring(i - 2, i));
@@ -50,7 +49,7 @@ public class Medium {
                 array[i] += array[i - 2];
             }
         }
-        return array[array.length - 1];
+        return array[s.length()];
     }
 
     // 166. Fraction to Recurring Decimal (Medium) [T = O(log(n) + d), S = O(n+d)]
