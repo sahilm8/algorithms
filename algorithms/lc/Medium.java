@@ -336,10 +336,9 @@ public class Medium {
 
     // 152. Maximum Product Subarray (Medium) [T = O(n), S = O(1)]
     // Variant of Kadane's Algorithm
-    // DP that tracks both maximum and minimum products
-    // because with multiplication, a minimum (-ve) product
-    // become maximum (+ve) when multiplied by a negative number.
     public static int maxProduct(int[] nums) {
+        // Track both max & min since minimum (-ve) product
+        // become maximum (+ve) when multiplied by a negative number.
         int max = nums[0], min = nums[0], total = nums[0];
         for (int i = 1; i < nums.length; i++) {
             int temp = max;
@@ -416,6 +415,29 @@ public class Medium {
             map.putIfAbsent(currentSum, i);
         }
         return maxLength;
+    }
+
+    // 443. String Compression (Medium) [T = O(n), S = O(1)]
+    public static int compress(char[] chars) {
+        int count = 1; // To count repeating chars
+        int writeIndex = 0; // Index to rewrite chars
+        for (int i = 1; i <= chars.length; i++) {
+            if (i == chars.length || chars[i] != chars[i - 1]) {
+                chars[writeIndex] = chars[i - 1]; // Rewrite
+                writeIndex++; // Move forward
+                if (count > 1) {
+                    char[] countChars = String.valueOf(count).toCharArray();
+                    for (char c : countChars) {
+                        chars[writeIndex] = c; // Insert count chars
+                        writeIndex++; // Move forward
+                    }
+                }
+                count = 1; // Reset count
+            } else {
+                count++; // Increase count if same as last char
+            }
+        }
+        return writeIndex;
     }
 
     public static void main(String[] args) {
