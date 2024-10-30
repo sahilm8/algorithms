@@ -378,6 +378,24 @@ public class Medium {
         return minLength == Integer.MAX_VALUE ? 0 : minLength;
     }
 
+    // 264. Ugly Number II (Medium) [T = O(n), S = O(n)]
+    public static int nthUglyNumber(int n) {
+        // DP
+        int[] array = new int[n];
+        array[0] = 1;
+        // Three pointers for 3 prime factors: 2 - p1, 3 - p2, 5 - p3
+        int p1 = 0, p2 = 0, p3 = 0;
+        for (int i = 1; i < n; i++) {
+            // Get the next ugly number by finding the min of the 3 products with the PFs
+            array[i] = Math.min(array[p1] * 2, Math.min(array[p2] * 3, array[p3] * 5));
+            // Only move the counter for min product
+            if (array[i] == array[p1] * 2) p1++;
+            if (array[i] == array[p2] * 3) p2++;
+            if (array[i] == array[p3] * 5) p3++;
+        }
+        return array[n - 1];
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -397,5 +415,6 @@ public class Medium {
         System.out.println(maxProduct(new int[] {2,3,-2,4}));
         System.out.println(maxSum(new int[] {2,3,-2,4}));
         System.out.println(minSubArrayLen(7, new int[] {2,3,1,2,4,3}));
+        System.out.println(nthUglyNumber(10));
     }
 }
