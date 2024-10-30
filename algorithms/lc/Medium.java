@@ -52,7 +52,7 @@ public class Medium {
         return array[s.length()];
     }
 
-    // 166. Fraction to Recurring Decimal (Medium) [T = O(log(n) + d), S = O(n+d)]
+    // 166. Fraction to Recurring Decimal (Medium) [T = O(log(n)), S = O(n)]
     public static String fractionToDecimal(int numerator, int denominator) {
         if (numerator == 0) {
             return "0";
