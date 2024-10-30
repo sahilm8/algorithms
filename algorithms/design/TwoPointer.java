@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class TwoPointer {
     public static int[] findPair(int[] arr, int target) {
-        Arrays.sort(arr); // ALWAYS sort first!
+        Arrays.sort(arr);  // sort first
         int left = 0;
         int right = arr.length - 1;
         while (left < right) {
