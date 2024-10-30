@@ -396,6 +396,28 @@ public class Medium {
         return array[n - 1];
     }
 
+    // 325. Maximum Size Subarray Sum Equals k (Medium) [T = O(n), S = O(n)]
+    public static int maxSubArrayLen(int[] nums, int k) {
+        // Map to store:
+        // Key = Running sum
+        // Value = Index where that running sum was found
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1); // Base case
+        int maxLength = 0;
+        int currentSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            // Subarray contains a sum == currentSum - k
+            if (map.containsKey(currentSum - k)) {
+                // current index - index of that sum gives the maxLength
+                maxLength = Math.max(maxLength, i - map.get(currentSum - k));
+            }
+            // If sum doesn't exist, add it
+            map.putIfAbsent(currentSum, i);
+        }
+        return maxLength;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -416,5 +438,6 @@ public class Medium {
         System.out.println(maxSum(new int[] {2,3,-2,4}));
         System.out.println(minSubArrayLen(7, new int[] {2,3,1,2,4,3}));
         System.out.println(nthUglyNumber(10));
+        System.out.println(maxSubArrayLen(new int[] {1,-1,5,-2,3}, 3));
     }
 }
