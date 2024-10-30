@@ -361,6 +361,23 @@ public class Medium {
         return total;
     }
 
+    // 209. Minimum Size Subarray Sum (Medium) [T = O(n), S = O(1)]
+    public static int minSubArrayLen(int target, int[] nums) {
+        // TP & SW
+        int minLength = Integer.MAX_VALUE; // any min length will be smaller
+        int currentSum = 0;
+        int left = 0;
+        for (int right = 0; right < nums.length; right++) {
+            currentSum += nums[right]; // update sum
+            while (currentSum >= target) {
+                minLength = Math.min(minLength, right - left + 1); // update min length
+                currentSum -= nums[left]; // subtract value at left
+                left++; // move left forward
+            }
+        }
+        return minLength == Integer.MAX_VALUE ? 0 : minLength;
+    }
+
     public static void main(String[] args) {
         System.out.println(isRobotBounded("GGLLGGLLGG"));
         System.out.println(numDecodings("226"));
@@ -379,5 +396,6 @@ public class Medium {
         System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
         System.out.println(maxProduct(new int[] {2,3,-2,4}));
         System.out.println(maxSum(new int[] {2,3,-2,4}));
+        System.out.println(minSubArrayLen(7, new int[] {2,3,1,2,4,3}));
     }
 }
