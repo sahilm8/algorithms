@@ -14,7 +14,7 @@ public class Easy {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target - nums[i])) {
-                return new int[] { map.get(target - nums[i]), i };
+                return new int[] { i, map.get(target - nums[i]) };
             }
             map.put(nums[i], i);
         }
@@ -23,13 +23,13 @@ public class Easy {
 
     // 20. Valid Parenthesis (Easy) [T = O(n), S = O(n)]
     public static boolean isValid(String s) {
-        HashMap<Character, Character> map = new HashMap<>();
+        Map<Character, Character> map = new HashMap<>();
         map.put(')', '(');
         map.put(']', '[');
         map.put('}', '{');
-        Stack<Character> stack = new Stack<>();
         if (s.length() < 2 || map.containsKey(s.charAt(0)))
             return false;
+        Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             if (map.containsValue(s.charAt(i))) {
                 stack.push(s.charAt(i));
