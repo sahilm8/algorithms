@@ -11,7 +11,7 @@ import java.util.Stack;
 public class Easy {
     // 6. Two Sum (Easy) [T = O(n), S = O(n)]
     public static int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target - nums[i])) {
                 return new int[] { map.get(target - nums[i]), i };
@@ -35,7 +35,7 @@ public class Easy {
                 stack.push(s.charAt(i));
             } else {
                 if (!stack.isEmpty() && stack.peek() == map.get(s.charAt(i))) {
-                        stack.pop();
+                    stack.pop();
                 } else {
                     return false;
                 }
@@ -51,9 +51,18 @@ public class Easy {
     public static class ListNode {
         int val;
         ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
@@ -97,8 +106,14 @@ public class Easy {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
         TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
@@ -107,10 +122,11 @@ public class Easy {
     }
 
     public static int maxDepth(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null)
+            return 0;
         // Recursive DFS (Depth-First Search)
         int left = maxDepth(root.left);
-        int right =  maxDepth(root.right);
+        int right = maxDepth(root.right);
         return 1 + Math.max(left, right);
     }
 
@@ -155,7 +171,7 @@ public class Easy {
         }
         return maxProfit;
     }
-    
+
     // 1086. High Five (Easy) [T = O(n log(n)), S = O(n)]
     public static int[][] highFive(int[][] items) {
         HashMap<Integer, List<Integer>> map = new HashMap<>();
@@ -220,17 +236,18 @@ public class Easy {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(twoSum(new int[] {1, 2, 3, 4}, 6)));
+        System.out.println(Arrays.toString(twoSum(new int[] { 1, 2, 3, 4 }, 6)));
         System.out.println(isValid("([]"));
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         System.out.println(listNodeToString(mergeTwoLists(list1, list2)));
-        System.out.println(maxDepth(new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
+        System.out.println(maxDepth(
+                new TreeNode(3, new TreeNode(9, null, null), new TreeNode(20, new TreeNode(15), new TreeNode(7)))));
         System.out.println(firstUniqChar("loveleetcode"));
-        System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
+        System.out.println(maxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
         System.out.println(Arrays.deepToString(highFive(
-            new int[][] {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}}
-        )));
+                new int[][] { { 1, 91 }, { 1, 92 }, { 2, 93 }, { 2, 97 }, { 1, 60 }, { 2, 77 }, { 1, 65 }, { 1, 87 },
+                        { 1, 100 }, { 2, 100 }, { 2, 76 } })));
         System.out.println(backspaceCompare("ab#c", "ad#c"));
         System.out.println(climbStairs(3));
     }
