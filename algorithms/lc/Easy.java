@@ -16,7 +16,7 @@ public class Easy {
             if (map.containsKey(target - nums[i])) {
                 return new int[] { i, map.get(target - nums[i]) };
             }
-            map.put(nums[i], i);
+            map.putIfAbsent(nums[i], i);
         }
         return new int[] {};
     }
