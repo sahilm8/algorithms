@@ -211,7 +211,7 @@ public class Easy {
     // 70. Climb Stairs (Easy) [T = O(n), S = O(n)]
     public static int climbStairs(int n) {
         // DP
-        // 1 2 3
+        // n = 3
         // 1 -> 1-2-3
         // 2 -> 1 2-3
         // 3 -> 1-2 3
