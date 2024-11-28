@@ -66,7 +66,7 @@ public class Easy {
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode head = new ListNode(0);
+        ListNode head = new ListNode();
         ListNode current = head;
         while (list1 != null && list2 != null) {
             if (list1.val <= list2.val) {
@@ -84,7 +84,7 @@ public class Easy {
         if (list2 != null) {
             current.next = list2;
         }
-        return head.next; // Returning the node after head
+        return head.next;
     }
 
     public static String listNodeToString(ListNode head) {
