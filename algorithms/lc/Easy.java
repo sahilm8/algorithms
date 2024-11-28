@@ -124,7 +124,7 @@ public class Easy {
     public static int maxDepth(TreeNode root) {
         if (root == null)
             return 0;
-        // Recursive DFS (Depth-First Search)
+        // Depth-First Search
         int left = maxDepth(root.left);
         int right = maxDepth(root.right);
         return 1 + Math.max(left, right);
