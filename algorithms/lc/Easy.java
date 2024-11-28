@@ -171,7 +171,7 @@ public class Easy {
 
     // 1086. High Five (Easy) [T = O(n log(n)), S = O(n)]
     public static int[][] highFive(int[][] items) {
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < items.length; i++) {
             map.putIfAbsent(items[i][0], new ArrayList<>());
             map.get(items[i][0]).add(items[i][1]);
@@ -179,8 +179,15 @@ public class Easy {
         int[][] result = new int[map.size()][2];
         int i = 0;
         for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-            int avg = (int) entry.getValue().stream().sorted(Collections.reverseOrder()).limit(5)
-                    .mapToInt(Integer::intValue).average().orElse(0);
+            int avg = (int) entry
+                    .getValue()
+                    .stream()
+                    .sorted(Collections.reverseOrder())
+                    .mapToInt(Integer::intValue)
+                    .limit(5)
+                    .average()
+                    .orElse(0);
+
             result[i][0] = entry.getKey();
             result[i][1] = avg;
             i++;
