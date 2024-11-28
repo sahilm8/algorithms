@@ -1,5 +1,6 @@
 package algorithms.lc;
 
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -179,14 +180,8 @@ public class Easy {
         int[][] result = new int[map.size()][2];
         int i = 0;
         for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-            int avg = (int) entry
-                    .getValue()
-                    .stream()
-                    .sorted(Collections.reverseOrder())
-                    .limit(5)
-                    .mapToInt(Integer::intValue)
-                    .average()
-                    .orElse(0);
+            int avg = (int) entry.getValue().stream().sorted(Collections.reverseOrder()).limit(5)
+                    .mapToInt(Integer::intValue).average().orElse(0);
             result[i][0] = entry.getKey();
             result[i][1] = avg;
             i++;
