@@ -1,6 +1,5 @@
 package algorithms.lc;
 
-import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -191,24 +190,22 @@ public class Easy {
 
     // 844. Backspace String Compare (Easy) [T = O(n), S = O(n)]
     public static boolean backspaceCompare(String s, String t) {
-        return formatString(s).equals(formatString(t)) ? true : false;
+        if (formatString(s).equals(formatString(t))) {
+            return true;
+        }
+        return false;
     }
 
     public static String formatString(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '#' && !stack.isEmpty()) {
+            if (!stack.isEmpty() && s.charAt(i) == '#') {
                 stack.pop();
-            }
-            if (s.charAt(i) != '#') {
-                stack.add(s.charAt(i));
+            } else if (s.charAt(i) != '#') {
+                stack.push(s.charAt(i));
             }
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < stack.size(); i++) {
-            sb.append(stack.get(i));
-        }
-        return sb.toString();
+        return new String(stack.toString());
     }
 
     // 70. Climb Stairs (Easy) [T = O(n), S = O(n)]
