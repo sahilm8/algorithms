@@ -133,12 +133,11 @@ public class Easy {
     // 206. Reverse Linked List (Easy) [T = O(n), S = O(1)]
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
-        ListNode current = head;
-        while (current != null) {
-            ListNode temp = current.next;
-            current.next = prev;
-            prev = current;
-            current = temp;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
         }
         return prev;
     }
