@@ -161,12 +161,10 @@ public class Easy {
         int lowestPrice = prices[0];
         int maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {
-            if (prices[i] < lowestPrice) {
+            if (prices[i] < lowestPrice)
                 lowestPrice = prices[i];
-            }
-            if (maxProfit < prices[i] - lowestPrice) {
+            if (prices[i] - lowestPrice > maxProfit)
                 maxProfit = prices[i] - lowestPrice;
-            }
         }
         return maxProfit;
     }
